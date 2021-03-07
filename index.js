@@ -28,9 +28,18 @@ client.on('ready', () => {
 client.on('message', async message => {
   if(message.content === "Halo") {
     message.reply(`Halo juga`);
-  }
+  };
   if(message.content === "Hi") {
     message.channel.send(`Hi juga`)
-  }
+  };
+    
+    let prefix = "Your Bot Prefix";
+    
+    if(!message.content.startsWith(prefix)) return null;
+    
+    let args = message.content.slice(prefix.length).trim().split();
+    let cmd = args.shift().toLowerCase();
+    let commandFile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
+    if(commandFile) commandFile.run(client, message, args);
 });
-client.login(`Your Bot Token`)
+client.login(`Your Bot Token`);
