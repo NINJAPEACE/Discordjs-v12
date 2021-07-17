@@ -6,7 +6,7 @@ const web = http.createServer(function(req, res) {
   res.end();
 });
 
-web.listen(port, (err) {
+web.listen(port, (err) => {
      if(err) return console.log(err);
 
      console.log('Web Ready');
